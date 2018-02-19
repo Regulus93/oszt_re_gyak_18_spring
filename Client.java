@@ -11,15 +11,23 @@ public class Client {
 	
 		try (
 				Socket s = new Socket(GEP, PORT);
-				Scanner sc = new Scanner(s.getInputStream());
+				Scanner input = new Scanner(new File("inputToTask3.txt"));
 				PrintWriter pw = new PrintWriter(s.getOutputStream());
+				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 				
 		) {
-			pw.println(4); //--> println a "sorvéggarancia" miatt
+			while(input.hasNextLine()){
+					pw.println(input.nextLine());
+			}
+			input.close();
+		
 			pw.flush(); //--> PrintWriter pufferébe került adatok továbbítása
-			String be = sc.nextLine();
-			
-			System.out.println(be);
+
+			int calculatedNumber = Integer.parseInt(in.readLine());
+			while(calculatedNumber!=0){
+				System.out.println(calculatedNumber);
+				calculatedNumber = Integer.parseInt(in.readLine());
+			}
 		}
 	
 	}
