@@ -15,7 +15,7 @@ public class Client {
 				PrintWriter pw = new PrintWriter(s.getOutputStream());
 				
 		) {
-			pw.println("hello world"); //--> println a "sorvéggarancia" miatt
+			pw.println(4); //--> println a "sorvéggarancia" miatt
 			pw.flush(); //--> PrintWriter pufferébe került adatok továbbítása
 			String be = sc.nextLine();
 			
