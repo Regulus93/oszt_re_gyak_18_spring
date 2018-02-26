@@ -14,13 +14,17 @@ public class Server {
 				PrintWriter pw = new PrintWriter(s.getOutputStream());
 				
 		) {
-			if(sc.hasNextLine()){
-				String sentByClient = sc.nextLine();
-				int n = Integer.parseInt(sentByClient);
-				pw.println(Server.calculate(n));
+			List<Integer> numberList = new ArrayList<>();
+			
+			while(sc.hasNextInt()){
+				int num = sc.nextInt();
+				numberList.add(num);
 			}
-
-			pw.flush();
+			
+			for (int num : numberList){
+				pw.println(num);
+				pw.flush();
+			}
 		}
 	
 	}
