@@ -19,7 +19,7 @@ public class Szerver4 {
     private static void processNewClient(ServerSocket ss) throws Exception {
         try (
             Socket s = ss.accept();
-            Scanner clientInputScanner = new Scanner(s.getInputStream());
+            Scanner clientInputScanner = new Scanner(s.getInputStream(), "utf-8");
             PrintWriter pw = new PrintWriter(s.getOutputStream());
         ) {
             if(clientInputScanner.hasNextLine()) {
