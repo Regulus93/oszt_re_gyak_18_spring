@@ -1,34 +1,35 @@
+
 import java.util.*;
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
-public class Client {
-	public static void main(String[] args ) throws Exception {
-	// final String GEP = "localhost";
-	final String GEP = "127.0.0.1";
-	final int PORT = 12345;	
-	// final int PORT = 65535;	
-	
-		try (
-				Socket s = new Socket(GEP, PORT);
-				Scanner input = new Scanner(new File("inputToTask3.txt"));
-				PrintWriter pw = new PrintWriter(s.getOutputStream());
-				BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-				
-		) {
-			while(input.hasNextLine()){
-					pw.println(input.nextLine());
-			}
-			input.close();
-		
-			pw.flush(); //--> PrintWriter pufferébe került adatok továbbítása
+public class Kliens3 {
+    public static void main(String[] args) throws Exception {
+        final String GEP = "127.0.0.1";
+        final int PORT = 12345;
 
-			int calculatedNumber = Integer.parseInt(in.readLine());
-			while(calculatedNumber!=0){
-				System.out.println(calculatedNumber);
-				calculatedNumber = Integer.parseInt(in.readLine());
-			}
-		}
-	
-	}
+        try (
+            Socket s = new Socket(GEP, PORT);
+            Scanner scSock = new Scanner(s.getInputStream());
+            PrintWriter pwSock = new PrintWriter(s.getOutputStream());
+
+            Scanner scFile = new Scanner(new File("in.txt"));
+            PrintWriter pwFile = new PrintWriter(new File("out.txt"));
+        ) {
+            while (scFile.hasNextInt()) {
+                int num = scFile.nextInt();
+
+                pwSock.println(num);
+            }
+            pwSock.println(0);
+            pwSock.flush();
+
+            while (scSock.hasNextInt()) {
+                int num = scSock.nextInt();
+
+                pwFile.println(num);
+            }
+            pwFile.flush();
+        }
+    }
 }
