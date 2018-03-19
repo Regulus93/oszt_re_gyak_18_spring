@@ -31,3 +31,9 @@
     a) Ha az egyik kliens bontja a kapcsolatot, akkor a szerver várakozzon egy újabb kliensre, aki kapcsolódás után átveszi az előző helyét. Természetesen az új kliens is először a saját nevét küldi át.
   
     b) A porton tetszőlegesen sok kliens kapcsolódhat, és bármikor ki is léphetnek. A szerver sorban engedi szóhoz jutni a klienseket, azonban az üzeneteket nem azonnal küldi el mindegyik másik kliensnek. Ehelyett a szerver összegyűjti az üzeneteket, és csak akkor küldi el az adott kliens számára szóló üzeneteket, amikor az éppen szóhoz jut.
+
+8. A szerverhez kapcsolódjon két kliens egymás után (ugyanazon a porton) úgy, hogy a szerver mindkét kapcsolatot egyszerre tartja nyitva. A kliensek először egy-egy sorban a saját nevüket küldik át, majd felváltva írhatnak be egy-egy sornyi szöveget. A beírt üzeneteket küldje át a szerver a másik kliensnek ilyen alakban: <másik kliens neve>: <másik kliens üzenete>. Ha valamelyik kliens bontja a kapcsolatot, akkor a szerver zárja be a másik klienssel a kapcsolatot, és lépjen ki.
+
+	a) Ha az egyik kliens bontja a kapcsolatot, akkor a szerver várakozzon egy újabb kliensre, aki kapcsolódás után átveszi az előző helyét. Természetesen az új kliens is először a saját nevét küldi át.
+
+	b) A porton tetszőlegesen sok kliens kapcsolódhat, és bármikor ki is léphetnek. A szerver sorban engedi szóhoz jutni a klienseket, azonban az üzeneteket nem azonnal küldi el mindegyik másik kliensnek. Ehelyett a szerver összegyűjti az üzeneteket, és csak akkor küldi el az adott kliens számára szóló üzeneteket, amikor az éppen szóhoz jut.

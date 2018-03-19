@@ -3,15 +3,19 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class Szerver5 {
+public class Szerver8 {
 	static int numberOfConnectedClients = 0;
 	
     public static void main(String[] args) throws Exception {
         final int PORT = 12345;
-
-
+		ArrayList<Socket> clientSockets = new ArrayList<>();
+		ArrayList<String> clientNames = new ArrayList<>();
+		
         try (
             ServerSocket ss = new ServerSocket(PORT);
+			
+			Socket s = ss.accept();
+			
         ) {
             while (true) {
                 processNewClient(ss);
@@ -21,13 +25,23 @@ public class Szerver5 {
 
     private static void processNewClient(ServerSocket ss) throws Exception {
         try (
-            Socket s = ss.accept();
-			PrintWriter pw = new PrintWriter(s.getOutputStream());
-        ) {
-            if(s.isConnected()){
+            
+			clients.add(s);
+			Scanner clientScanner = new Scanner(s.getInputstream());
+			if(s.isConnected()){
 				numberOfConnectedClients++;
 			}
-			pw.println(numberOfConnectedClients);
+        ) {
+			Socket actualSocket = clients.get(0);
+			while(!actualSocket.isConnected()){
+			
+				if(clients.indexOf(actualSocket))
+				clients.get()
+			}
+			//switch
+			//checknumberofconnectedcliens
+			//waitformessage
+			//flush
 			pw.flush();
 			s.close();
         }
